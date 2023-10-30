@@ -14,7 +14,10 @@ urlpatterns = [
     path('<int:pk>/replies/list/', views.replies_list_view, name='tweeah_replies_list'),
 
     #
-    path('<int:pk>/like_unlike/', views.like_unlike_tweeah, name='tweeah_like_unlike_list'),
+    path('<int:pk>/like_unlike/', views.like_unlike_tweeah, name='tweeah_like_unlike'),
+
+    #
+    path('<int:pk>/bookmark/', views.bookmark, name='tweeah_bookmark'),
 
 ]
 

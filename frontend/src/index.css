@@ -73,9 +73,14 @@ button:focus-visible {
   border: 1px solid gray;
 }
 
+.card-css2{
+  margin-top: 5%;
+}
+
 .sidebar{
   background-color: black;
-  width: "280px"
+  width: "280px";
+  margin-left: -50%;
 }
 
 .text-area-css{

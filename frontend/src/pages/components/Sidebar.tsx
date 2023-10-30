@@ -1,4 +1,21 @@
+import { MouseEvent } from 'react';
+import jwtDecode from "jwt-decode";
+
+import useAuth from '../../hooks/useAuth';
+import {logout} from '../../services/auth';
+import { AccessToken } from '../../types';
+
+
+
 export default function Sidebar() {
+    const {dispatch, AUTH_ACTIONS, state} = useAuth();
+    const decodedToken: AccessToken | null = state?.accessToken ? jwtDecode(state.accessToken) : null;
+    console.log(decodedToken);
+    
+    const handleClick = (e:MouseEvent<HTMLElement>) => {
+        logout({ dispatch, AUTH_ACTIONS })
+    }
+
     return (
         <div className="d-flex flex-column flex-shrink-0 p-3 sidebar">
             <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -42,14 +59,14 @@ export default function Sidebar() {
             <div className="dropdown">
                 <a href="#" className="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
-                    <strong>mdo</strong>
+                    <strong className='link-light'>{decodedToken?.name}</strong>
                 </a>
                 <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                    <li><a className="dropdown-item" href="#">New project...</a></li>
-                    <li><a className="dropdown-item" href="#">Settings</a></li>
                     <li><a className="dropdown-item" href="#">Profile</a></li>
+                    <li><a className="dropdown-item" href="#">Settings</a></li>
                     <li><hr className="dropdown-divider" /></li>
-                    <li><a className="dropdown-item" href="#">Sign out</a></li>
+                    <li><a className="dropdown-item" href='/login' onClick={handleClick}>Sign out</a></li>
+
                 </ul>
             </div>
         </div>

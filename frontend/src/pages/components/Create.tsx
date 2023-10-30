@@ -1,5 +1,4 @@
 import { ChangeEvent, FormEvent,  MouseEvent, useState } from "react";
-import Form from 'react-bootstrap/Form';
 import useTweeah from "../../hooks/useTweeah";
 
 const CreateTweeah = () => {
@@ -22,8 +21,8 @@ const CreateTweeah = () => {
     }
 
     return (
-        <div className="card gedf-card card-css">
-            <div className="card-body">
+        <div className="card gedf-card card-css card-css2">
+            <div className="card-body card-body-css">
                 <div className="tab-content" id="myTabContent">
                     <div className="tab-pane fade show active" id="posts" role="tabpanel" aria-labelledby="posts-tab">
                         <div className="form-group">
@@ -42,14 +41,6 @@ const CreateTweeah = () => {
                 </div>
             </div>
         </div>
-        // <div>
-        //     <Form onSubmit={handleSubmit}>
-        //         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-        //             <Form.Label>Body</Form.Label>
-        //             <Form.Control type="text" placeholder="body" value={body} onChange={handleChange}/>
-        //         </Form.Group>
-        //     </Form>
-        // </div>
     )
 }
 

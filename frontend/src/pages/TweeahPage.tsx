@@ -1,11 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
 import useTweeah from "../hooks/useTweeah";
 import { MouseEvent } from 'react';
-import Card from 'react-bootstrap/Card';
-import { AiOutlineHeart } from 'react-icons/ai';
-import { BsBookmark } from 'react-icons/bs';
 import CreateReplie from "./components/CreateReplie";
 import LikeButton from "./components/LikeButton";
+import BookMarkButton from "./components/BookMark";
+
 import { FaRegComment } from 'react-icons/fa';
 
 const TweeahPage = () => {
@@ -59,7 +58,7 @@ const TweeahPage = () => {
     const FillData = () => {
         if (tweeah?.results) {
             return (
-                <div className="card gedf-card text-light card-css">
+                <div className="card gedf-card text-light card-css card-css2">
                     <div className="card-header">
                         <div className="d-flex justify-content-between align-items-center">
                             <div className="d-flex justify-content-between align-items-center">
@@ -83,7 +82,7 @@ const TweeahPage = () => {
                     <div className="card-footer">
                         <LikeButton id={tweeah?.results?.id} iliked={tweeah?.results?.iliked} likes_count={tweeah?.results?.likes_count} />
                         <a onClick={() => console.log("a")} className="card-link"><i className="fa fa-comment"></i> <FaRegComment /> {tweeah?.results?.replies_count}</a>
-                        <a className="card-link"><i className="fa fa-mail-forward"></i> <BsBookmark /></a>
+                        <BookMarkButton id={tweeah?.results?.id} ibookmarked={tweeah?.results?.ibookmarked} bookmarks_count={tweeah?.results?.bookmarks_count}/>
                         <a href="#" className="card-link"><i className="fa fa-mail-forward"></i> SHARE</a>
                     </div>
                 </div>

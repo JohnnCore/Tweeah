@@ -2,7 +2,6 @@ import { MouseEvent, useEffect } from "react";
 import useTweeah from "../hooks/useTweeah";
 import CreateTweeah from "./components/Create";
 import LikeButton from "./components/LikeButton";
-import { useNavigate } from "react-router-dom";
 import { FaRegComment } from 'react-icons/fa';
 
 const HomePage = () => {

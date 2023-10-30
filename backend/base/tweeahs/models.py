@@ -10,6 +10,7 @@ class Tweeah(models.Model):
     parent_tweet = models.ForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
     retweeted_by = models.ManyToManyField(NewUser, related_name='retweets', blank=True)
     liked_by = models.ManyToManyField(NewUser, related_name='likes', blank=True)
+    bookmarked_by = models.ManyToManyField(NewUser, related_name="bookmarked", verbose_name="bookmarks")
 
     class Meta:
         ordering = ['-created_at']
@@ -28,6 +29,8 @@ class Tweeah(models.Model):
     #         self.retweeted_by.remove(user)
     #         self.retweet_count -= 1
     #         self.save()
+
+
 
     @property
     def is_parent(self):
@@ -49,6 +52,11 @@ class Tweeah(models.Model):
             tweet = tweet.parent_tweet
         return thread
     
+        # def bookmark(self, user):
+        
+    @property
+    def bookmarks_count(self):
+        return self.bookmarked_by.count()
 
 """
 # Create your models here.

@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import useAuth from "../hooks/useAuth";
-
+import jwtDecode from "jwt-decode";
+import { AccessToken } from "../types";
 
 const baseURL = 'http://127.0.0.1:8000';
 
@@ -10,6 +11,18 @@ const useAxios = () => {
     const accessToken = state.accessToken;
     const refreshToken = state.refreshToken;
     const [isRefreshingToken, setIsRefreshingToken] = useState(false);
+
+    const currentTimeInSeconds = Math.floor(Date.now() / 1000); // Tempo atual em segundos
+
+    if(refreshToken){
+        const decodedToken: AccessToken | null = jwtDecode(refreshToken);
+        if (decodedToken) {
+            if (decodedToken.exp < currentTimeInSeconds){
+                window.location.href = "/login";
+                alert("nabo")
+            }
+        }
+    }
 
     const axiosInstance = axios.create({
         baseURL,

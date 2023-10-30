@@ -139,7 +139,20 @@ def like_unlike_tweeah(request, pk, *args, **kwargs):
             else:
                 qs.liked_by.add(request.user.id)
 
-            return Response({"message" : "Tweet liked"}, status=status.HTTP_200_OK)
+            return Response({"message" : "Tweeah liked"}, status=status.HTTP_200_OK)
+        except ObjectDoesNotExist:
+            return Response({'error': 'Tweet não encontrado.'}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['POST'])
+def bookmark(request, pk, *args, **kwargs):
+    if pk:
+        try:
+            qs = Tweeah.objects.get(id=pk)
+            if request.data.get("ibookmarked"):
+                qs.bookmarked_by.remove(request.user.id)
+            else:
+                qs.bookmarked_by.add(request.user.id)
+            return Response({"message" : "Tweeah bookmarked"}, status=status.HTTP_200_OK)
         except ObjectDoesNotExist:
             return Response({'error': 'Tweet não encontrado.'}, status=status.HTTP_404_NOT_FOUND)
 

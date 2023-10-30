@@ -5,7 +5,7 @@ import { ListResponse, TweeahResponse } from "../types";
 const useTweeah = () => {
     const queryClient = useQueryClient()
 
-    const { getList, getTweeah, postTweeah, getReplies, postReplie, likeTweeah } = tweeahAPI();
+    const { getList, getTweeah, postTweeah, getReplies, postReplie, likeTweeah, bookmarkTweeah } = tweeahAPI();
 
     // Use the useQuery directly to fetch data
     const listAllTweeahs = () => {
@@ -105,13 +105,30 @@ const useTweeah = () => {
         }
     }
 
+    const bookMarkTweeah = () => {
+        const { mutate, error } = useMutation(
+            "bookmarkTweeah",
+            bookmarkTweeah,
+            {
+                // onSuccess: () => {
+                //     queryClient.invalidateQueries(['tweeah']); // Certifique-se de que a chave corresponda à query de respostas
+                // },
+            }
+        )
+        return {
+            mutate,
+            error,
+        }
+    }
+
     return {
         listAllTweeahs,
         getOneTweeah,
         createTweeah,
         getTweeahReplies,
         createReplie,
-        likeUnlikeTweeah
+        likeUnlikeTweeah,
+        bookMarkTweeah,
     };
 };
 

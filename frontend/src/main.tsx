@@ -18,7 +18,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <div className="row">
               <nav className="col-md-3 col-lg-2 sidebar position-fixed" style={{ marginLeft: "12.5%", marginTop:'1%' }}>
                 {/* Defina a largura da Sidebar, remova o padding e a fixe */}
-                <Sidebar />
+                {location.pathname !== '/login' && (
+                  <nav className="col-md-3 col-lg-2 sidebar position-fixed" style={{ marginLeft: "12.5%", marginTop:'1%' }}>
+                    <Sidebar />
+                  </nav>
+                )}
               </nav>
               <main className="col-md-9 col-lg-10 ml-md-3 ml-lg-12 mx-auto">
                 {/* Adicione um deslocamento para o conteúdo */}

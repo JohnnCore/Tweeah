@@ -51,4 +51,13 @@ export const register = async ({dispatch, email, username, password, AUTH_ACTION
   }
 }
 
+export const logout = async({dispatch, AUTH_ACTIONS}:PropsType) => {
+  try{
+    dispatch({
+      type:AUTH_ACTIONS.LOGOUT,
+    })
+  }catch(error) {
+    console.error('Erro ao fazer logout:', error);
+  }
+}
 
